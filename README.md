@@ -31,5 +31,6 @@ Stay tuned for updates to the Excel file, including enhancements and expansions 
 
 ## Credits
 
-Special thanks to Roberto Rodriguez (@Cyb3rWard0g) for the attackcti library, which inspired this project. This tool builds on the foundational work laid by the cybersecurity community to enhance defensive capabilities across the industry.
-
+Special thanks to Roberto Rodriguez (@Cyb3rWard0g) & RealityNet, which inspired this project.
+https://cyberwardog.blogspot.com/2017/07/how-hot-is-your-hunt-team.html
+https://github.com/RealityNet/attack-coverage
