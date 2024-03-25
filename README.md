@@ -8,7 +8,7 @@ Welcome to the Enhanced MITRE ATT&CK® Coverage Tracker, a streamlined and excel
 ![Coverage](images/Coverage.png)
 #### Status
 ![Status](images/Status.png)
-###$ Techniques
+#### Techniques
 ![Techniques](images/Techniques.png)
 
 ## Project Goal
