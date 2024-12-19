@@ -3,7 +3,7 @@
 
 Welcome to the Enhanced MITRE ATT&CK® Coverage Tracker, a streamlined and excel-centric approach designed for Security Operations Centers (SOCs) to manage and measure the coverage of MITRE ATT&CK® tactics and techniques. This project aims to provide SOC analysts and security consultants with a simple, portable, and effective tool for gaining insights into their defensive capabilities against cyber threats.
 
-> Built on top of MITRE ATT&CK® framework as of ATT&CK v14.1, October 31, 2023 - current.
+> Built on top of MITRE ATT&CK® framework as of ATT&CK v14.1, October 31, 2023 - OUTDATED.
 
 ## Screenshots
 ### Coverage
