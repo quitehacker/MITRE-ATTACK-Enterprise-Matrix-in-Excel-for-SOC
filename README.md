@@ -11,11 +11,6 @@ Provides a visual representation of detection coverage across the ATT&CK framewo
 
 ![Coverage](images/Coverage.png)
 
-### Status
-Displays the current detection status of each technique and sub-technique, based on the rules and data sources documented in the workbook. It's a dynamic sheet that updates as new detection rules are added or modified.
-
-![Status](images/Status.png)
-
 ### Techniques
 Focused on the individual techniques outlined by MITRE ATT&CK®, this sheet allows for detailed mapping of detection rules against specific techniques and sub-techniques. Users can document their detection coverage, note available data sources, and identify areas lacking detection capability.
 
