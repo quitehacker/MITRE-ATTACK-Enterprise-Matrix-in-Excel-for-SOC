@@ -1,5 +1,6 @@
 
 # Enhanced MITRE ATT&CK® Coverage Tracker
+> MITRE ATTACK Framework: Enterprise Matrix in Excel for SOC Teams
 
 Welcome to the Enhanced MITRE ATT&CK® Coverage Tracker, a streamlined and excel-centric approach designed for Security Operations Centers (SOCs) to manage and measure the coverage of MITRE ATT&CK® tactics and techniques. This project aims to provide SOC analysts and security consultants with a simple, portable, and effective tool for gaining insights into their defensive capabilities against cyber threats.
 
