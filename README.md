@@ -27,9 +27,11 @@ Lists the data sources that can be leveraged to detect the techniques, allowing 
 ![Detections](images/Sources.png)
 
 ### Progress
+Overall progress or coverage of all the detection rules you have in place.
 #### Basic Progress
-
+![Detections](images/Basic_Progress.png)
 #### Advanced Progress
+![Detections](images/Advanced_Progress.png)
 
 ## Project Goal
 
