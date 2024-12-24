@@ -26,6 +26,11 @@ Lists the data sources that can be leveraged to detect the techniques, allowing 
 
 ![Detections](images/Sources.png)
 
+### Progress
+#### Basic Progress
+
+#### Advanced Progress
+
 ## Project Goal
 
 The core of this project is the Excel file, `MITRE ATT&CK Enterprise Matrix for SOC.xlsx`, tailored to assess the coverage of MITRE ATT&CK® tactics and techniques based on your detection rules. This tool is crafted for DFIR consultants and SOC analysts working across various environments, offering a unique way to visualize the readiness against attacker tactics and pinpointing areas needing improvement.
