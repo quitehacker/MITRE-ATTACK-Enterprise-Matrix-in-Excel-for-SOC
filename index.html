@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MITRE ATT&CK Coverage Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>MITRE ATT&CK® Coverage Tracker</h1>
+                <p class="subtitle">Enterprise Matrix for SOC Teams</p>
+            </div>
+            <div class="header-actions">
+                <button id="exportBtn" class="btn btn-secondary">
+                    <span>📥</span> Export Data
+                </button>
+                <button id="importBtn" class="btn btn-secondary">
+                    <span>📤</span> Import Data
+                </button>
+                <input type="file" id="fileInput" accept=".json" style="display: none;">
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-view="dashboard">
+                <span>📊</span> Dashboard
+            </button>
+            <button class="nav-tab" data-view="coverage">
+                <span>🎯</span> Coverage
+            </button>
+            <button class="nav-tab" data-view="techniques">
+                <span>🔍</span> Techniques
+            </button>
+            <button class="nav-tab" data-view="detections">
+                <span>🛡️</span> Detections
+            </button>
+            <button class="nav-tab" data-view="sources">
+                <span>💾</span> Data Sources
+            </button>
+        </nav>
+
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="spinner"></div>
+            <p>Loading MITRE ATT&CK data...</p>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view active">
+                <div class="dashboard-grid">
+                    <div class="stat-card">
+                        <h3>Total Techniques</h3>
+                        <div class="stat-value" id="totalTechniques">0</div>
+                        <p class="stat-label">Including Sub-techniques</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Detection Rules</h3>
+                        <div class="stat-value" id="totalDetections">0</div>
+                        <p class="stat-label">Active Rules</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Coverage</h3>
+                        <div class="stat-value" id="overallCoverage">0%</div>
+                        <p class="stat-label">Overall Detection Coverage</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Data Sources</h3>
+                        <div class="stat-value" id="availableSources">0</div>
+                        <p class="stat-label">Available Sources</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-sections">
+                    <div class="dashboard-section">
+                        <h2>Coverage by Tactic</h2>
+                        <div id="tacticCoverage" class="tactic-coverage-grid"></div>
+                    </div>
+
+                    <div class="dashboard-section">
+                        <h2>Recent Activity</h2>
+                        <div id="recentActivity" class="activity-list">
+                            <p class="empty-state">No recent activity</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section">
+                        <h2>Quick Stats</h2>
+                        <div class="quick-stats">
+                            <div class="quick-stat">
+                                <span class="label">Detected</span>
+                                <span class="value" id="detectedCount">0</span>
+                            </div>
+                            <div class="quick-stat">
+                                <span class="label">No Detection</span>
+                                <span class="value" id="noDetectionCount">0</span>
+                            </div>
+                            <div class="quick-stat">
+                                <span class="label">Inconsistent</span>
+                                <span class="value" id="inconsistentCount">0</span>
+                            </div>
+                            <div class="quick-stat">
+                                <span class="label">No Sources</span>
+                                <span class="value" id="noSourcesCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coverage View -->
+            <div id="coverage-view" class="view">
+                <div class="view-header">
+                    <h2>ATT&CK Coverage Matrix</h2>
+                    <p>Visual representation of detection coverage across tactics and techniques</p>
+                </div>
+                <div id="coverageMatrix" class="coverage-matrix"></div>
+            </div>
+
+            <!-- Techniques View -->
+            <div id="techniques-view" class="view">
+                <div class="view-header">
+                    <h2>Techniques & Sub-techniques</h2>
+                    <div class="view-actions">
+                        <input type="text" id="techniqueSearch" placeholder="Search techniques..." class="search-input">
+                        <select id="tacticFilter" class="filter-select">
+                            <option value="">All Tactics</option>
+                        </select>
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="detect">Detected</option>
+                            <option value="no detect">No Detection</option>
+                            <option value="inconsistent">Inconsistent</option>
+                            <option value="no sources">No Sources</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="techniquesTable" class="data-table-container"></div>
+            </div>
+
+            <!-- Detections View -->
+            <div id="detections-view" class="view">
+                <div class="view-header">
+                    <h2>Detection Rules</h2>
+                    <button id="addDetectionBtn" class="btn btn-primary">
+                        <span>➕</span> Add Detection Rule
+                    </button>
+                </div>
+                <div id="detectionsTable" class="data-table-container"></div>
+            </div>
+
+            <!-- Data Sources View -->
+            <div id="sources-view" class="view">
+                <div class="view-header">
+                    <h2>Data Sources</h2>
+                    <div class="view-actions">
+                        <input type="text" id="sourceSearch" placeholder="Search data sources..." class="search-input">
+                        <button id="toggleAllSources" class="btn btn-secondary">Toggle All</button>
+                    </div>
+                </div>
+                <div id="sourcesTable" class="data-table-container"></div>
+            </div>
+        </main>
+
+        <!-- Modal for Adding/Editing Detections -->
+        <div id="detectionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Add Detection Rule</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="detectionForm">
+                        <div class="form-group">
+                            <label for="detectionName">Detection Name *</label>
+                            <input type="text" id="detectionName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="detectionDescription">Description</label>
+                            <textarea id="detectionDescription" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="detectionPlatform">Platform</label>
+                            <select id="detectionPlatform">
+                                <option value="">Select Platform</option>
+                                <option value="Windows">Windows</option>
+                                <option value="Linux">Linux</option>
+                                <option value="macOS">macOS</option>
+                                <option value="Cloud">Cloud</option>
+                                <option value="Network">Network</option>
+                                <option value="Multiple">Multiple</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="detectionSeverity">Severity</label>
+                            <select id="detectionSeverity">
+                                <option value="">Select Severity</option>
+                                <option value="Critical">Critical</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="detectionActive" checked>
+                                Active
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="technique1">Technique 1</label>
+                            <input type="text" id="technique1" placeholder="e.g., T1003.001" list="techniquesList">
+                        </div>
+                        <div class="form-group">
+                            <label for="technique2">Technique 2</label>
+                            <input type="text" id="technique2" placeholder="e.g., T1059.001" list="techniquesList">
+                        </div>
+                        <div class="form-group">
+                            <label for="technique3">Technique 3</label>
+                            <input type="text" id="technique3" placeholder="e.g., T1055" list="techniquesList">
+                        </div>
+                        <datalist id="techniquesList"></datalist>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                    <button type="submit" form="detectionForm" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

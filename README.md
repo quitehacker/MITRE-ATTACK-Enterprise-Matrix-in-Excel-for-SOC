@@ -1,11 +1,42 @@
 
 # Enhanced MITRE ATT&CK® Coverage Tracker
-> MITRE ATTACK Framework: Enterprise MITRE Matrix in Excel for SOC Teams
+> MITRE ATTACK Framework: Enterprise MITRE Matrix for SOC Teams
 
-Welcome to the Enhanced MITRE ATT&CK® Coverage Tracker, a streamlined and excel-centric approach designed for Security Operations Centers (SOCs) to manage and measure the coverage of MITRE ATT&CK® tactics and techniques. This project aims to provide SOC analysts and security consultants with a simple, portable, and effective tool for gaining insights into their defensive capabilities against cyber threats.
+Welcome to the Enhanced MITRE ATT&CK® Coverage Tracker, designed for Security Operations Centers (SOCs) to manage and measure the coverage of MITRE ATT&CK® tactics and techniques. This project provides SOC analysts and security consultants with a simple, portable, and effective tool for gaining insights into their defensive capabilities against cyber threats.
 
 > [!NOTE]
 > Built on top of MITRE ATT&CK® framework as of ATT&CK v16.1, October 31, 2024 - April 21, 2025.
+
+## 🌐 Web Application (NEW!)
+
+**Access the live web application here:** [MITRE ATT&CK Coverage Tracker](https://quitehacker.github.io/MITRE-ATTACK-Enterprise-Matrix-in-Excel-for-SOC/)
+
+The coverage tracker is now available as a fully web-based application that:
+- **Automatically fetches** the latest MITRE ATT&CK data from their official GitHub repository
+- **Works entirely in your browser** - no installation or backend required
+- **Stores your data locally** using browser localStorage for privacy
+- **Import/Export functionality** to backup and share your coverage data
+- **Real-time updates** - see your coverage metrics update as you add detection rules
+- **Mobile-friendly** responsive design for on-the-go access
+- **Always up-to-date** with the latest MITRE ATT&CK framework
+
+### Web Application Features
+- **Dashboard**: Overview of your coverage metrics and statistics
+- **Coverage Matrix**: Visual representation of detection coverage by tactic
+- **Techniques View**: Searchable and filterable list of all techniques
+- **Detection Rules**: Manage your detection rules with an intuitive interface
+- **Data Sources**: Track which data sources are available in your environment
+
+### Getting Started with the Web App
+1. Visit the [web application](https://quitehacker.github.io/MITRE-ATTACK-Enterprise-Matrix-in-Excel-for-SOC/)
+2. Start adding your detection rules in the "Detections" tab
+3. Mark your available data sources in the "Data Sources" tab
+4. Monitor your coverage in real-time on the Dashboard
+5. Export your data anytime to backup or share with your team
+
+## 📊 Excel Version
+
+The original Excel-based tracker is still available for those who prefer offline analysis or need Excel-specific features.
 
 ## Screenshots
 ### Coverage
@@ -37,7 +68,12 @@ Overall progress or coverage of all the detection rules you have in place.
 
 ## Project Goal
 
-The core of this project is the Excel file, `MITRE ATT&CK Enterprise Matrix for SOC.xlsx`, tailored to assess the coverage of MITRE ATT&CK® tactics and techniques based on your detection rules. This tool is crafted for DFIR consultants and SOC analysts working across various environments, offering a unique way to visualize the readiness against attacker tactics and pinpointing areas needing improvement.
+This project provides two ways to assess the coverage of MITRE ATT&CK® tactics and techniques based on your detection rules:
+
+1. **Web Application** (Recommended): A modern, browser-based tool that automatically fetches the latest MITRE data
+2. **Excel Workbook**: The original `MITRE ATT&CK Enterprise Matrix for SOC.xlsx` for offline analysis
+
+Both tools are crafted for DFIR consultants and SOC analysts working across various environments, offering a unique way to visualize readiness against attacker tactics and pinpoint areas needing improvement.
 
 ## Features of the Coverage Tracker
 
@@ -81,12 +117,52 @@ Utilize the "detection rules modifier" in the techniques worksheet to disable an
 ### Managing Custom Data Sources
 If your SOC utilizes data sources not listed in the ATT&CK framework, add these to the Sources worksheet and update the techniques accordingly to reflect these new sources.
 
+## Technical Details
+
+### Web Application Architecture
+The web application is built with:
+- **Frontend**: Pure HTML5, CSS3, and vanilla JavaScript (no dependencies)
+- **Data Source**: MITRE ATT&CK data fetched from `https://raw.githubusercontent.com/mitre/cti/master/enterprise-attack/enterprise-attack.json`
+- **Storage**: Browser localStorage for user data (detection rules and data sources)
+- **Hosting**: GitHub Pages (static site hosting)
+
+### Data Privacy
+All your detection rules and data source configurations are stored locally in your browser. No data is sent to any server. You can export your data at any time for backup or sharing purposes.
+
+### Browser Compatibility
+The web application works on all modern browsers:
+- Chrome/Edge (recommended)
+- Firefox
+- Safari
+- Opera
+
+### Contributing
+Contributions are welcome! Feel free to:
+- Report bugs or request features via GitHub Issues
+- Submit pull requests for improvements
+- Share your feedback and suggestions
+
 ## Future Updates
 
-Stay tuned for updates to the Excel file, including enhancements and expansions to accommodate new versions of the MITRE ATT&CK framework. Your feedback and contributions are welcome to help evolve this tool.
+Stay tuned for updates including:
+- Additional visualization options
+- Coverage comparison over time
+- Integration with SIEM platforms
+- Custom technique/sub-technique support
+- Export to various formats (PDF, CSV, etc.)
+
+Your feedback and contributions are welcome to help evolve this tool.
 
 ## Credits
 
-Special thanks to Roberto Rodriguez (@Cyb3rWard0g) & RealityNet, which inspired this project.
-https://cyberwardog.blogspot.com/2017/07/how-hot-is-your-hunt-team.html
-https://github.com/RealityNet/attack-coverage
+Special thanks to:
+- Roberto Rodriguez (@Cyb3rWard0g) & RealityNet, which inspired this project
+  - https://cyberwardog.blogspot.com/2017/07/how-hot-is-your-hunt-team.html
+  - https://github.com/RealityNet/attack-coverage
+- MITRE Corporation for maintaining the ATT&CK framework
+  - https://github.com/mitre/cti
+  - https://attack.mitre.org/
+
+## License
+
+This project is licensed under the terms specified in the LICENSE file.
